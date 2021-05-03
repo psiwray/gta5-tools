@@ -45,8 +45,8 @@ namespace gta5_tools
             disconnectNetwork.Register();
             freezeGame.Register();
 
-            timerGame.Tick += timerGame_Tick;
-            timerNetwork.Tick += timerNetwork_Tick;
+            timerGame.Tick += TimerGame_Tick;
+            timerNetwork.Tick += TimerNetwork_Tick;
 
             numericUpDownGame.Value = timerGame.Interval / 1000;
             numericUpDownNetwork.Value = timerNetwork.Interval / 1000;
@@ -136,7 +136,7 @@ namespace gta5_tools
             numericUpDownNetwork.Value = config.NetworkDisconnectTime;
         }
 
-        private void timerGame_Tick(object sender, EventArgs e)
+        private void TimerGame_Tick(object sender, EventArgs e)
         {
             Debug.WriteLine("Resuming the game's process.");
 
@@ -148,7 +148,7 @@ namespace gta5_tools
             timerGame.Enabled = false;
         }
 
-        private void timerNetwork_Tick(object sender, EventArgs e)
+        private void TimerNetwork_Tick(object sender, EventArgs e)
         {
             Debug.WriteLine("Reconnecting the network adapter.");
 
@@ -210,7 +210,7 @@ namespace gta5_tools
             ProcessStartInfo startInfo = new()
             {
                 FileName = "netsh",
-                Arguments = "interface set interface \"Wi-Fi\" admin=disabled",
+                Arguments = $"interface set interface \"{listBoxInterface.SelectedItem}\" admin=disabled",
                 RedirectStandardOutput = true,
                 UseShellExecute = false,
                 CreateNoWindow = true
@@ -268,21 +268,25 @@ namespace gta5_tools
             base.WndProc(ref m);
         }
 
-        private void numericUpDownGame_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDownGame_ValueChanged(object sender, EventArgs e)
         {
+            Debug.WriteLine("Value changed in the game timer.");
+
             timerGame.Interval = (int)numericUpDownGame.Value * 1000;
             if (config != null)
                 config.GameFreezeTime = (int)numericUpDownGame.Value;
         }
 
-        private void numericUpDownNetwork_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDownNetwork_ValueChanged(object sender, EventArgs e)
         {
+            Debug.WriteLine("Value changed in the network timer.");
+
             timerNetwork.Interval = (int)numericUpDownNetwork.Value * 1000;
             if (config != null)
                 config.NetworkDisconnectTime = (int)numericUpDownNetwork.Value;
         }
 
-        private void buttonDisconnect_Click(object sender, EventArgs e)
+        private void ButtonDisconnect_Click(object sender, EventArgs e)
         {
             if (DisconnectNetwork())
             {
@@ -298,7 +302,7 @@ namespace gta5_tools
             }
         }
 
-        private void buttonFreeze_Click(object sender, EventArgs e)
+        private void ButtonFreeze_Click(object sender, EventArgs e)
         {
             if (FreezeGame())
             {
@@ -321,7 +325,7 @@ namespace gta5_tools
             File.WriteAllText(CONFIG_FILE, JsonSerializer.Serialize<Config>(config));
         }
 
-        private void listBoxInterface_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBoxInterface_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (config != null) config.LastKnownAdapter = listBoxInterface.SelectedItem.ToString();
         }

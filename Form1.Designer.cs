@@ -156,7 +156,7 @@ namespace gta5_tools
             0,
             0,
             0});
-            this.numericUpDownNetwork.ValueChanged += new System.EventHandler(this.numericUpDownNetwork_ValueChanged);
+            this.numericUpDownNetwork.ValueChanged += new System.EventHandler(this.NumericUpDownNetwork_ValueChanged);
             // 
             // label9
             // 
@@ -188,7 +188,7 @@ namespace gta5_tools
             0,
             0,
             0});
-            this.numericUpDownGame.ValueChanged += new System.EventHandler(this.numericUpDownGame_ValueChanged);
+            this.numericUpDownGame.ValueChanged += new System.EventHandler(this.NumericUpDownGame_ValueChanged);
             // 
             // label10
             // 
@@ -207,7 +207,7 @@ namespace gta5_tools
             this.buttonDisconnect.TabIndex = 3;
             this.buttonDisconnect.Text = "Disconnect";
             this.buttonDisconnect.UseVisualStyleBackColor = true;
-            this.buttonDisconnect.Click += new System.EventHandler(this.buttonDisconnect_Click);
+            this.buttonDisconnect.Click += new System.EventHandler(this.ButtonDisconnect_Click);
             // 
             // buttonFreeze
             // 
@@ -217,7 +217,7 @@ namespace gta5_tools
             this.buttonFreeze.TabIndex = 4;
             this.buttonFreeze.Text = "Freeze";
             this.buttonFreeze.UseVisualStyleBackColor = true;
-            this.buttonFreeze.Click += new System.EventHandler(this.buttonFreeze_Click);
+            this.buttonFreeze.Click += new System.EventHandler(this.ButtonFreeze_Click);
             // 
             // listBoxInterface
             // 
@@ -227,7 +227,7 @@ namespace gta5_tools
             this.listBoxInterface.Name = "listBoxInterface";
             this.listBoxInterface.Size = new System.Drawing.Size(331, 94);
             this.listBoxInterface.TabIndex = 2;
-            this.listBoxInterface.SelectedIndexChanged += new System.EventHandler(this.listBoxInterface_SelectedIndexChanged);
+            this.listBoxInterface.SelectedIndexChanged += new System.EventHandler(this.ListBoxInterface_SelectedIndexChanged);
             // 
             // label11
             // 
