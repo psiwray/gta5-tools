@@ -49,8 +49,17 @@ namespace gta5_tools
             this.buttonFreeze = new System.Windows.Forms.Button();
             this.listBoxInterface = new System.Windows.Forms.ListBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.labelInstructions = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.buttonQuit = new System.Windows.Forms.Button();
+            this.timerInstructionFlash = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNetwork)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGame)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerGame
@@ -120,7 +129,7 @@ namespace gta5_tools
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(66, 58);
+            this.label7.Location = new System.Drawing.Point(69, 19);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(181, 15);
             this.label7.TabIndex = 6;
@@ -129,7 +138,7 @@ namespace gta5_tools
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(124, 87);
+            this.label8.Location = new System.Drawing.Point(127, 49);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(123, 15);
             this.label8.TabIndex = 7;
@@ -137,7 +146,7 @@ namespace gta5_tools
             // 
             // numericUpDownNetwork
             // 
-            this.numericUpDownNetwork.Location = new System.Drawing.Point(253, 56);
+            this.numericUpDownNetwork.Location = new System.Drawing.Point(256, 17);
             this.numericUpDownNetwork.Maximum = new decimal(new int[] {
             60,
             0,
@@ -161,7 +170,7 @@ namespace gta5_tools
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(331, 58);
+            this.label9.Location = new System.Drawing.Point(334, 19);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(12, 15);
             this.label9.TabIndex = 10;
@@ -169,7 +178,7 @@ namespace gta5_tools
             // 
             // numericUpDownGame
             // 
-            this.numericUpDownGame.Location = new System.Drawing.Point(253, 85);
+            this.numericUpDownGame.Location = new System.Drawing.Point(256, 47);
             this.numericUpDownGame.Maximum = new decimal(new int[] {
             60,
             0,
@@ -193,7 +202,7 @@ namespace gta5_tools
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(331, 87);
+            this.label10.Location = new System.Drawing.Point(334, 49);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(12, 15);
             this.label10.TabIndex = 13;
@@ -201,21 +210,21 @@ namespace gta5_tools
             // 
             // buttonDisconnect
             // 
-            this.buttonDisconnect.Location = new System.Drawing.Point(12, 240);
+            this.buttonDisconnect.Location = new System.Drawing.Point(6, 22);
             this.buttonDisconnect.Name = "buttonDisconnect";
-            this.buttonDisconnect.Size = new System.Drawing.Size(75, 23);
+            this.buttonDisconnect.Size = new System.Drawing.Size(108, 23);
             this.buttonDisconnect.TabIndex = 3;
-            this.buttonDisconnect.Text = "Disconnect";
+            this.buttonDisconnect.Text = "&Disconnect";
             this.buttonDisconnect.UseVisualStyleBackColor = true;
             this.buttonDisconnect.Click += new System.EventHandler(this.ButtonDisconnect_Click);
             // 
             // buttonFreeze
             // 
-            this.buttonFreeze.Location = new System.Drawing.Point(93, 240);
+            this.buttonFreeze.Location = new System.Drawing.Point(6, 51);
             this.buttonFreeze.Name = "buttonFreeze";
-            this.buttonFreeze.Size = new System.Drawing.Size(75, 23);
+            this.buttonFreeze.Size = new System.Drawing.Size(108, 23);
             this.buttonFreeze.TabIndex = 4;
-            this.buttonFreeze.Text = "Freeze";
+            this.buttonFreeze.Text = "&Freeze";
             this.buttonFreeze.UseVisualStyleBackColor = true;
             this.buttonFreeze.Click += new System.EventHandler(this.ButtonFreeze_Click);
             // 
@@ -223,36 +232,93 @@ namespace gta5_tools
             // 
             this.listBoxInterface.FormattingEnabled = true;
             this.listBoxInterface.ItemHeight = 15;
-            this.listBoxInterface.Location = new System.Drawing.Point(12, 140);
+            this.listBoxInterface.Location = new System.Drawing.Point(6, 37);
             this.listBoxInterface.Name = "listBoxInterface";
-            this.listBoxInterface.Size = new System.Drawing.Size(331, 94);
+            this.listBoxInterface.Size = new System.Drawing.Size(214, 109);
             this.listBoxInterface.TabIndex = 2;
             this.listBoxInterface.SelectedIndexChanged += new System.EventHandler(this.ListBoxInterface_SelectedIndexChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 122);
+            this.label11.Location = new System.Drawing.Point(6, 19);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(179, 15);
             this.label11.TabIndex = 17;
             this.label11.Text = "Network interface to disconnect:";
             // 
+            // labelInstructions
+            // 
+            this.labelInstructions.AutoSize = true;
+            this.labelInstructions.Font = new System.Drawing.Font("Segoe UI", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.labelInstructions.Location = new System.Drawing.Point(72, 85);
+            this.labelInstructions.Name = "labelInstructions";
+            this.labelInstructions.Size = new System.Drawing.Size(277, 20);
+            this.labelInstructions.TabIndex = 18;
+            this.labelInstructions.Text = "(Press <Enter> to apply the changes.)";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.buttonFreeze);
+            this.groupBox1.Controls.Add(this.buttonDisconnect);
+            this.groupBox1.Location = new System.Drawing.Point(244, 156);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(120, 152);
+            this.groupBox1.TabIndex = 19;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Commands";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.listBoxInterface);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Location = new System.Drawing.Point(12, 156);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(226, 152);
+            this.groupBox2.TabIndex = 20;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "NICs";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.labelInstructions);
+            this.groupBox3.Controls.Add(this.numericUpDownNetwork);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.numericUpDownGame);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Location = new System.Drawing.Point(12, 42);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(352, 108);
+            this.groupBox3.TabIndex = 21;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Timers";
+            // 
+            // buttonQuit
+            // 
+            this.buttonQuit.Location = new System.Drawing.Point(289, 314);
+            this.buttonQuit.Name = "buttonQuit";
+            this.buttonQuit.Size = new System.Drawing.Size(75, 23);
+            this.buttonQuit.TabIndex = 22;
+            this.buttonQuit.Text = "&Quit";
+            this.buttonQuit.UseVisualStyleBackColor = true;
+            this.buttonQuit.Click += new System.EventHandler(this.buttonQuit_Click);
+            // 
+            // timerInstructionFlash
+            // 
+            this.timerInstructionFlash.Interval = 1000;
+            this.timerInstructionFlash.Tick += new System.EventHandler(this.timerInstructionFlash_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(355, 275);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.listBoxInterface);
-            this.Controls.Add(this.buttonFreeze);
-            this.Controls.Add(this.buttonDisconnect);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.numericUpDownGame);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.numericUpDownNetwork);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
+            this.ClientSize = new System.Drawing.Size(376, 349);
+            this.Controls.Add(this.buttonQuit);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -268,6 +334,11 @@ namespace gta5_tools
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNetwork)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGame)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,6 +364,12 @@ namespace gta5_tools
         private System.Windows.Forms.Button buttonFreeze;
         private System.Windows.Forms.ListBox listBoxInterface;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label labelInstructions;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button buttonQuit;
+        private System.Windows.Forms.Timer timerInstructionFlash;
     }
 }
 

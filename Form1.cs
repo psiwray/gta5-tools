@@ -32,6 +32,8 @@ namespace gta5_tools
 
         private Config config;
 
+        private bool flashedRed = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -67,6 +69,7 @@ namespace gta5_tools
             };
             command.Start();
 
+            // Find all the names of the network interfaces, enabled or not.
             List<string> interfaceNames = new();
             foreach (var line in command.StandardOutput.ReadToEnd().Split("\r\n").Skip(3))
             {
@@ -128,12 +131,17 @@ namespace gta5_tools
                 };
             }
 
+            // Set the values from the configuration or from defaults.
             timerGame.Interval = config.GameFreezeTime * 1000;
             timerNetwork.Interval = config.NetworkDisconnectTime * 1000;
             listBoxInterface.SelectedItem = config.LastKnownAdapter;
 
             numericUpDownGame.Value = config.GameFreezeTime;
             numericUpDownNetwork.Value = config.NetworkDisconnectTime;
+
+            // Start the instructions flash timer.
+            timerInstructionFlash.Enabled = true;
+            timerInstructionFlash.Start();
         }
 
         private void TimerGame_Tick(object sender, EventArgs e)
@@ -322,12 +330,34 @@ namespace gta5_tools
         {
             // Save the configuration.
             Debug.WriteLine("Saving the configuration.");
-            File.WriteAllText(CONFIG_FILE, JsonSerializer.Serialize<Config>(config));
+            File.WriteAllText(CONFIG_FILE, JsonSerializer.Serialize(config));
         }
 
         private void ListBoxInterface_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (config != null) config.LastKnownAdapter = listBoxInterface.SelectedItem.ToString();
+        }
+
+        private void buttonQuit_Click(object sender, EventArgs e)
+        {
+            // Save the configuration.
+            Debug.WriteLine("Saving the configuration.");
+            File.WriteAllText(CONFIG_FILE, JsonSerializer.Serialize(config));
+            Application.Exit();
+        }
+
+        private void timerInstructionFlash_Tick(object sender, EventArgs e)
+        {
+            if (flashedRed)
+            {
+                labelInstructions.ForeColor = Color.Black;
+            }
+            else
+            {
+                labelInstructions.ForeColor = Color.Red;
+            }
+
+            flashedRed = !flashedRed;
         }
     }
 }
